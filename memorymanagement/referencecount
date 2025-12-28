@@ -1,0 +1,31 @@
+import sys
+
+print(" Reference Count ")
+print()
+
+# Create an object
+my_string = "Hello, Memory!"
+print(f"Created string: {my_string}")
+print(f"   Reference count: {sys.getrefcount(my_string)}")  
+
+# another reference
+another_ref = my_string
+print(f" Added another reference")
+print(f"   Reference count: {sys.getrefcount(my_string)}")
+
+# Add to a list 
+my_list = [my_string]
+print(f" Added to a list")
+print(f"   Reference count: {sys.getrefcount(my_string)}")
+
+# Remove references
+print(f" Removing references...")
+another_ref = None  # Remove one reference
+my_list.clear()     # Remove from list
+print(f"   Reference count: {sys.getrefcount(my_string)}")
+
+# Finally remove the last reference
+print(f"\n5. Removing last reference...")
+original_ref = None  # In real code, this happens when variable goes out of scope
+# Actually, we can't make it 0 here because WE'RE STILL USING IT in the print statement!
+# This shows why reference counting is automatic
