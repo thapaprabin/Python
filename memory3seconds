@@ -1,0 +1,18 @@
+import sys
+import gc 
+
+def memory_check():
+    print(f"1. GC objects :{len(gc.get_objects())}")
+
+    import pandas as pd 
+    objects=[]
+    for obj in gc.get_objects():
+        if hasattr(obj, '__dict__'):
+            size=sys.getsizeof(obj)
+            objects.append((type(obj).__name__,size))
+    
+    for obj_type,size in sorted(objects,key=lambda x: x[1],reverse=True)[:10]:
+        print(f"{obj_type}:{size/1024/1024 : .2f}MB")
+if __name__ == "__main__":
+    memory_check()
+
