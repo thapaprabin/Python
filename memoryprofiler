@@ -1,0 +1,6 @@
+memory profiler is all about :
+1.Memory leaks
+2.allocating memory properly
+3.which section of the program/function is using more memory
+4.Circular references
+5.prevent program from memory crash.
